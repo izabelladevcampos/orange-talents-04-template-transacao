@@ -18,13 +18,13 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.zupacademy.izabella.transacao.compartilhado.erro.ErroPadronizado;
 
 @RestController
-@RequestMapping("/transacoes")
+@RequestMapping("api/transacoes")
 public class TransacaoController {
 
     @Autowired
     private TransacaoRepository repository;
 
-    @GetMapping("{id}")
+    @GetMapping("/{numero}")
     public ResponseEntity<?> detalhar (@PathVariable String numero,
                                        @PageableDefault(sort = "efetivadaEm", direction = Sort.Direction.DESC, page = 0, size = 10)Pageable paginacao){
         Page<Transacao> transacoes = repository.findByCartaoNumero(numero, paginacao);
